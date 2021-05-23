@@ -1,0 +1,13 @@
+package testng;
+
+public class TestngAnno {
+	
+	public void test1() {
+		
+	}
+	
+public void test1() {
+		
+	}
+
+}

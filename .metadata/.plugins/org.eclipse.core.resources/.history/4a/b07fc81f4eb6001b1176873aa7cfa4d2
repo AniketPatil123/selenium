@@ -1,0 +1,65 @@
+package test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class logintest {
+	
+	static WebDriver driver;
+	
+	public static void main(String[] args) {
+		
+		logintest obj=new logintest();
+		
+		obj.setup();
+		
+		
+		public void setup() {
+
+			System.setProperty("webdriver.chrome.driver", "chromedriver");
+			driver=new ChromeDriver();
+			driver.get("https://www.simplilearn.com/");
+			
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+			
+		}
+		
+		public void login() {
+
+			WebElement loginlink= driver.findElement(By.linkText("Log in"));
+			loginlink.click();
+			
+			WebElement username=driver.findElement(By.name("user_login"));
+			username.sendKeys("abc@xyz.com");
+			
+			WebElement password=driver.findElement(By.name("user_pwd"));
+			password.sendKeys("1234");
+			
+			/*WebElement chkbox= driver.findElement(By.id("remember-me"));
+			chkbox.click();*/
+			
+			WebElement login=driver.findElement(By.name("btn_login"));
+			login.click();
+			
+			WebElement err=driver.findElement(By.id("error_box"));
+			String text=err.getText();
+			if(text.equals("Please enter a Valid email address")) {
+				System.out.println("pass");
+			}
+			else
+				System.out.println("fail");
+			
+		}
+		
+		public void reardown() {
+			diver.quit();
+		}
+		
+	}
+
+}
